@@ -1,13 +1,16 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "5.4",
+	"EngineAssociation": "{E62E8EB1-4EAE-4CC6-AB8D-628F859F4A61}",
 	"Category": "",
 	"Description": "",
 	"Modules": [
 		{
 			"Name": "freshersJam2024",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
 		}
 	],
 	"Plugins": [
