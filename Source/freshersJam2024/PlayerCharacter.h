@@ -25,10 +25,13 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
 	// Movement functions
 	void Walk(const FInputActionValue& value);
 	void MouseMovement(const FInputActionValue& value);
 
+	// Highlight Interactable
+	void HighlightLookAt();
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -50,5 +53,10 @@ protected:
 	USpringArmComponent* cameraArm;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UCameraComponent* camera;
+
+	// Interaction
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float interactionRange = 1500;
+	UPrimitiveComponent* lookedAt;
 
 };

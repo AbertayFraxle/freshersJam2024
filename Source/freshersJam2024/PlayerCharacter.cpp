@@ -35,6 +35,7 @@ void APlayerCharacter::BeginPlay()
 // Called every frame
 void APlayerCharacter::Tick(float DeltaTime)
 {
+    HighlightLookAt();
 	Super::Tick(DeltaTime);
 
 }
@@ -65,3 +66,42 @@ void APlayerCharacter::MouseMovement(const FInputActionValue& value) {
     AddControllerPitchInput(-mouseMovement.Y);
 }
 
+void APlayerCharacter::HighlightLookAt() {
+    // Get forward vector for first raycast
+    FVector ForwardVector = camera->GetForwardVector();
+    // Get start point for first raycast
+    FVector StartPoint = camera->GetComponentLocation();
+    // Calculate endpoint for first raycast
+    FVector EndPoint = StartPoint + (ForwardVector * interactionRange);
+    // Create parameter list, just leaving blank for now
+    FCollisionQueryParams Parameters;
+    // Create raycast hit output
+    FHitResult hit;
+    // Var to hold whether we hit a valid target
+    bool successfulHit = false;
+    // Do our raycast
+    if (GetWorld()->LineTraceSingleByChannel(hit, StartPoint, EndPoint, ECC_Visibility, Parameters)) {
+        // Check that the hit actor has at least one applicable tag, indicating it's an actor meant to be interacted with
+        if (hit.GetActor()->ActorHasTag(TEXT("Interactable"))) {
+            // Mark that we have successfully found a target, so second raycast isn't necessary
+            successfulHit = true;
+            // Remove highlight from previously targeted component, if we have one
+            if (lookedAt != nullptr) {
+                if (hit.GetActor()->GetUniqueID() != lookedAt->GetUniqueID()) {
+                    lookedAt->SetRenderCustomDepth(false);
+                }
+            }
+            // Store pointer to our new target
+            lookedAt = hit.GetComponent();
+            // Enable the highlight on our target
+            lookedAt->SetRenderCustomDepth(true);
+        }
+        // If we don't find a target, make sure to remove highlight from our old one, if we did have one
+        else {
+            if (lookedAt != nullptr) {
+                lookedAt->SetRenderCustomDepth(false);
+                lookedAt = nullptr;
+            }
+        }
+    }
+}
