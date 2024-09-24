@@ -112,4 +112,10 @@ void APlayerCharacter::HighlightLookAt() {
             }
         }
     }
+    if (!successfulHit) {
+        if (lookedAt != nullptr) {
+            lookedAt->SetRenderCustomDepth(false);
+            lookedAt = nullptr;
+        }
+    }
 }
