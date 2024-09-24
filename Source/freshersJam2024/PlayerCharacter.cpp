@@ -89,7 +89,7 @@ void APlayerCharacter::HighlightLookAt() {
     bool successfulHit = false;
     // Do our raycast
     if (GetWorld()->LineTraceSingleByChannel(hit, StartPoint, EndPoint, ECC_Visibility, Parameters)) {
-        // Check that the hit actor has at least one applicable tag, indicating it's an actor meant to be interacted with
+        // Check that the hit actor has interactable tag, indicating it's an actor meant to be interacted with
         if (hit.GetActor()->ActorHasTag(TEXT("Interactable"))) {
             // Mark that we have successfully found a target, so second raycast isn't necessary
             successfulHit = true;
