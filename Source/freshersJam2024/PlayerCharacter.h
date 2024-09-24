@@ -30,6 +30,9 @@ protected:
 	void Walk(const FInputActionValue& value);
 	void MouseMovement(const FInputActionValue& value);
 
+	// Interact function
+	void Interact(const FInputActionValue& value);
+
 	// Highlight Interactable
 	void HighlightLookAt();
 public:	
@@ -45,6 +48,8 @@ protected:
 	UInputAction* walkInputAction;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UInputAction* mouseInputAction;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UInputAction* interactInputAction;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UInputMappingContext* inputMappingContext;
 

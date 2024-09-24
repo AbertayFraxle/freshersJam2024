@@ -49,6 +49,7 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
     if (UEnhancedInputComponent* enhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent)) {
         enhancedInputComponent->BindAction(walkInputAction, ETriggerEvent::Triggered, this, &APlayerCharacter::Walk);
         enhancedInputComponent->BindAction(mouseInputAction, ETriggerEvent::Triggered, this, &APlayerCharacter::MouseMovement);
+        enhancedInputComponent->BindAction(interactInputAction, ETriggerEvent::Triggered, this, &APlayerCharacter::Interact);
     }
 }
 
@@ -64,6 +65,13 @@ void APlayerCharacter::MouseMovement(const FInputActionValue& value) {
     FVector2D mouseMovement = value.Get<FVector2D>();
     AddControllerYawInput(mouseMovement.X);
     AddControllerPitchInput(-mouseMovement.Y);
+}
+
+void APlayerCharacter::Interact(const FInputActionValue& value) {
+    // Do stuff here
+    if (lookedAt != nullptr) {
+        GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::White, TEXT("Interacting with highlighted object"));
+    }
 }
 
 void APlayerCharacter::HighlightLookAt() {
