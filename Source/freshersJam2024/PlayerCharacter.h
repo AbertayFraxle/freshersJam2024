@@ -11,6 +11,7 @@
 #include "GameFramework/Actor.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "InteractableComponent.h"
 #include "PlayerCharacter.generated.h"
 
 UCLASS()

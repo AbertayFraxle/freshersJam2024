@@ -68,9 +68,15 @@ void APlayerCharacter::MouseMovement(const FInputActionValue& value) {
 }
 
 void APlayerCharacter::Interact(const FInputActionValue& value) {
-    // Do stuff here
+    // Double check we have interactable component
     if (lookedAt != nullptr) {
-        GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::White, TEXT("Interacting with highlighted object"));
+        AActor* owner = lookedAt->GetOwner();
+        if (owner != nullptr) {
+            UInteractableComponent* interactableComponent = owner->GetComponentByClass<UInteractableComponent>();
+            if (interactableComponent != nullptr) {
+                interactableComponent->OnInteractedWith.Broadcast();
+            }
+        }
     }
 }
 
@@ -90,7 +96,7 @@ void APlayerCharacter::HighlightLookAt() {
     // Do our raycast
     if (GetWorld()->LineTraceSingleByChannel(hit, StartPoint, EndPoint, ECC_Visibility, Parameters)) {
         // Check that the hit actor has interactable tag, indicating it's an actor meant to be interacted with
-        if (hit.GetActor()->ActorHasTag(TEXT("Interactable"))) {
+        if (hit.GetActor()->GetComponentByClass<UInteractableComponent>() != nullptr) {
             // Mark that we have successfully found a target, so second raycast isn't necessary
             successfulHit = true;
             // Remove highlight from previously targeted component, if we have one
