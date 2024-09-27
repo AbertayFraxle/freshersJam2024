@@ -32,3 +32,9 @@ void UInventory::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 	// ...
 }
 
+void UInventory::AddStateCpp(FVector2D key,bool newVal) {
+
+	//inventoryStateNew.Add(key, newVal);
+	inventoryStateNew.Add(key, newVal);
+	
+}

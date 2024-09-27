@@ -7,7 +7,7 @@
 #include "Inventory.generated.h"
 
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS(Blueprintable, BlueprintType, ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class FRESHERSJAM2024_API UInventory : public UActorComponent
 {
 	GENERATED_BODY()
@@ -27,5 +27,7 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+	UFUNCTION(BlueprintCallable)
+	void AddStateCpp(FVector2D key, bool newVal);
 		
 };
