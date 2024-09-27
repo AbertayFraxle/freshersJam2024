@@ -52,6 +52,8 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UInputAction* interactInputAction;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UInputAction* inventoryInputAction;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UInputMappingContext* inputMappingContext;
 
 	// Camera
