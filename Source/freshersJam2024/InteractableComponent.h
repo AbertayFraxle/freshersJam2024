@@ -7,7 +7,7 @@
 #include "Delegates/Delegate.h"
 #include "InteractableComponent.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FInteractedWith);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FInteractedWith, AActor*, Player);
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
