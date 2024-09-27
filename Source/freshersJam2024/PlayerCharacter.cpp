@@ -74,7 +74,7 @@ void APlayerCharacter::Interact(const FInputActionValue& value) {
         if (owner != nullptr) {
             UInteractableComponent* interactableComponent = owner->GetComponentByClass<UInteractableComponent>();
             if (interactableComponent != nullptr) {
-                interactableComponent->OnInteractedWith.Broadcast();
+                interactableComponent->OnInteractedWith.Broadcast(this);
             }
         }
     }
