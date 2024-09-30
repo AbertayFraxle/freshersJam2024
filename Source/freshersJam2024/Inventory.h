@@ -29,5 +29,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void AddStateCpp(FVector2D key, bool newVal);
-		
+
+	UFUNCTION(BlueprintCallable)
+	bool FindStateCpp(FVector2D key, bool& value);
 };

@@ -38,3 +38,18 @@ void UInventory::AddStateCpp(FVector2D key,bool newVal) {
 	inventoryStateNew.Add(key, newVal);
 	
 }
+
+bool UInventory::FindStateCpp(FVector2D key, bool& value)
+{
+
+	bool* look = inventoryStateNew.Find(key);
+	if (look) {
+		value = *look;
+		
+		return true;
+	}
+
+	return false;
+
+	
+}
