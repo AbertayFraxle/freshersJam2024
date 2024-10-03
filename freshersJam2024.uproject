@@ -10,8 +10,20 @@
 			"LoadingPhase": "Default",
 			"AdditionalDependencies": [
 				"Engine"
+				
+				 
 			]
-		}
+		},
+		{
+		 "Name": "HTTP",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		},
+		{
+		"Name": "HttpBlueprint",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+						}
 	],
 	"Plugins": [
 		{
@@ -20,6 +32,10 @@
 			"TargetAllowList": [
 				"Editor"
 			]
+		},
+		{
+			"Name": "HttpBlueprint",
+			"Enabled": true
 		}
 	]
 }
